@@ -6,9 +6,9 @@ ZetCode PyQt5 tutorial
 
 This program creates a context menu.
 
-Author: Jan Bodnar
+Author: Zetta Kim
 Website: zetcode.com
-Last edited: August 2017
+Last edited: 2018.12.26
 """
 
 import sys
