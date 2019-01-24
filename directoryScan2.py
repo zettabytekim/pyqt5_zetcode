@@ -5,18 +5,16 @@ folder = os.getcwd()
 
 print('Current folder : %s' % folder)
 
-df = pd.DataFrame(columns=('directory', 'file', 'full_name'))
+df = pd.DataFrame(columns=('directory', 'file'))
 
 i = 0
-for path, dirs, files in os.walk('/Test'):
-    print('\nFolder: ', path)
+for path, dirs, files in os.walk(folder):
+    #print('\nFolder: ', path)
 
     if files:
         for filename in files:
- #           print(' Files: ', os.path.join(path, filename))
- #           print(' Files: ', filename)
-            df2 = pd.DataFrame([path, filename], columns=('directory', 'file', 'full_name'))
-            df.append(df2, ignore_index=True)
-df.head()
+            #print(' Files: ', os.path.join(path, filename))
+            df2 = pd.DataFrame(data=[[path, filename]], columns=('directory', 'file'))
+            df = df.append(df2, ignore_index=True)
 
-exit(0)
+print(df.head())
