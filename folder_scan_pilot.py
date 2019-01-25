@@ -19,8 +19,7 @@ class MyWidget(QWidget):
         self.initUI()
 
     def initUI(self):
-        actbtn = QPushButton('폴더 선택', 
-        self)
+        actbtn = QPushButton('폴더 선택', self)
         actbtn.clicked.connect(self.buttonClicked)
         actbtn.resize(actbtn.sizeHint())
         actbtn.move(70, 40)
