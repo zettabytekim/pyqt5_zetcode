@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
     특정 데렉토리 내 파일 리스트를 엑셀로 저장
+    Pandas
 Author: Zetta Kim
 Last edited: 2019.01.25
 """
@@ -9,7 +10,6 @@ import sys
 import os.path
 import pandas as pd
 from PyQt5.QtWidgets import QFileDialog, QWidget, QPushButton, QApplication
-
 
 class MyWidget(QWidget):
 
