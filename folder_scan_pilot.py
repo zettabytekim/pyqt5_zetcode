@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 import sys
 import os.path
 import pandas as pd
-from PyQt5.QtWidgets import QWidget, QPushButton, QApplication
+from PyQt5.QtWidgets import QFileDialog, QWidget, QPushButton, QApplication
 
 
 class MyWidget(QWidget):
@@ -12,12 +13,12 @@ class MyWidget(QWidget):
         self.initUI()
 
     def initUI(self):
-        actbtn = QPushButton('Action', self)
+        actbtn = QPushButton('폴더 선택', self)
         actbtn.clicked.connect(self.buttonClicked)
         actbtn.resize(actbtn.sizeHint())
         actbtn.move(70, 40)
 
-        qbtn = QPushButton('Quit', self)
+        qbtn = QPushButton('종료', self)
         qbtn.clicked.connect(QApplication.instance().quit)
         qbtn.resize(qbtn.sizeHint())
         qbtn.move(70, 80)
@@ -27,24 +28,30 @@ class MyWidget(QWidget):
         self.show()
 
     def buttonClicked(self):
-        folder = '/TEMP'
-        print('Scan folder : %s' % folder)
+        dir_name = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        # folder = os.getcwd()
+        # folder = '/test'
+        # print('Scan folder : %s' % folder)
+        # print('Directory Name : %s' % dir_name)
 
         df = pd.DataFrame(columns=('no', 'directory', 'd_link', 'file', 'f_link'))
 
         i = 1
-        for path, dirs, files in os.walk(folder):
+        for path, dirs, files in os.walk(dir_name):
             if files:
                 for filename in files:
+                    fullname = os.path.join(path, filename)
                     df2 = pd.DataFrame(
                         data=[
-                            [i, path, f'=HYPERLINK("{path}", "Dir 보기")',
-                             filename, f'=HYPERLINK("{filename}", "File 보기")']
+                            [i, path, f'=HYPERLINK("{path}", "DirView")',
+                            filename, f'=HYPERLINK("{fullname}", "FileView")']
                         ], columns=('no', 'directory', 'd_link', 'file', 'f_link'))
                     df = df.append(df2, ignore_index=True)
                     i += 1
 
         df.to_excel('folder_scan.xlsx', sheet_name='Scan Result', index=False, header=True)
+        os.system("open " + 'folder_scan.xlsx') # macOS
+        # os.system("start " + filename) # Windows
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
