@@ -1,4 +1,10 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
+"""
+    특정 데렉토리 내 파일 리스트를 엑셀로 저장
+Author: Zetta Kim
+Last edited: 2019.01.25
+"""
 import sys
 import os.path
 import pandas as pd
@@ -13,7 +19,8 @@ class MyWidget(QWidget):
         self.initUI()
 
     def initUI(self):
-        actbtn = QPushButton('폴더 선택', self)
+        actbtn = QPushButton('폴더 선택', 
+        self)
         actbtn.clicked.connect(self.buttonClicked)
         actbtn.resize(actbtn.sizeHint())
         actbtn.move(70, 40)
