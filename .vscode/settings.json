@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/Users/zetta/.conda/envs/pyqt5_zetcode/bin/python"
+    "python.pythonPath": "/Users/zetta/.conda/envs/pyqt5_zetcode/bin/python",
+    "python.linting.pylintEnabled": true
 }
